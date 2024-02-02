@@ -1,0 +1,17 @@
+E:\RefactoryTest\Refactory\bin\Debug\net8.0\Refactory.exe
+E:\RefactoryTest\Refactory\bin\Debug\net8.0\Refactory.deps.json
+E:\RefactoryTest\Refactory\bin\Debug\net8.0\Refactory.runtimeconfig.json
+E:\RefactoryTest\Refactory\bin\Debug\net8.0\Refactory.dll
+E:\RefactoryTest\Refactory\bin\Debug\net8.0\Refactory.pdb
+E:\RefactoryTest\Refactory\bin\Debug\net8.0\Newtonsoft.Json.dll
+E:\RefactoryTest\Refactory\obj\Debug\net8.0\Refactory.csproj.AssemblyReference.cache
+E:\RefactoryTest\Refactory\obj\Debug\net8.0\Refactory.GeneratedMSBuildEditorConfig.editorconfig
+E:\RefactoryTest\Refactory\obj\Debug\net8.0\Refactory.AssemblyInfoInputs.cache
+E:\RefactoryTest\Refactory\obj\Debug\net8.0\Refactory.AssemblyInfo.cs
+E:\RefactoryTest\Refactory\obj\Debug\net8.0\Refactory.csproj.CoreCompileInputs.cache
+E:\RefactoryTest\Refactory\obj\Debug\net8.0\Refactory.csproj.CopyComplete
+E:\RefactoryTest\Refactory\obj\Debug\net8.0\Refactory.dll
+E:\RefactoryTest\Refactory\obj\Debug\net8.0\refint\Refactory.dll
+E:\RefactoryTest\Refactory\obj\Debug\net8.0\Refactory.pdb
+E:\RefactoryTest\Refactory\obj\Debug\net8.0\Refactory.genruntimeconfig.cache
+E:\RefactoryTest\Refactory\obj\Debug\net8.0\ref\Refactory.dll
