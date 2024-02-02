@@ -16,7 +16,7 @@ public class Program
 		}
 		if (reverse == word)
 		{
-			Console.WriteLine("true");
+			Console.WriteLine("true true");
 		}
 		else
 		{
