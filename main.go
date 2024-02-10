@@ -9,13 +9,16 @@ import (
 func main() {
 	//array
 	var array1 [4]int = [4]int{1, 2, 3, 4}
-	array2 := [4]int{1, 2, 3, 4}
+	array2 := [4]int{100, 90, 80, 70}
 	//if array1 tidak sama dengan null atau array2 tidak sama dengan null
 	if array1 != [4]int{} || array2 != [4]int{} {
 		fmt.Println("bisa")
 	}
 	i := array2
 	fmt.Printf("cobak %v \n", i)
+	for i := len(array2) - 1; i >= 0; i-- {
+		fmt.Printf("* %v * \n", array2[i])
+	}
 
 	//slice
 	var slice1 []int = []int{1, 2, 5}
