@@ -3,45 +3,12 @@ package main
 import (
 	"errors"
 	"fmt"
+	"time"
 	"unicode/utf8"
 )
 
 func main() {
-	//array
-	var array1 [4]int = [4]int{1, 2, 3, 4}
-	array2 := [4]int{100, 90, 80, 70}
-	//if array1 tidak sama dengan null atau array2 tidak sama dengan null
-	if array1 != [4]int{} || array2 != [4]int{} {
-		fmt.Println("bisa")
-	}
-	i := array2
-	fmt.Printf("cobak %v \n", i)
-	for i := len(array2) - 1; i >= 0; i-- {
-		fmt.Printf("* %v * \n", array2[i])
-	}
-
-	//slice
-	var slice1 []int = []int{1, 2, 5}
-	var slice2 []int = []int{5, 6, 7, 8}
-	slice1 = append(slice1, slice2...)
-	var slice3 []int = make([]int, 3, 10)
-	fmt.Println(slice1)
-	fmt.Println(len(slice3), cap(slice3))
-	fmt.Println(slice1[len(slice1)-1]) //nilai terakhir
-
-	//map
-	var map1 = make(map[string]int)
-	map1 = map[string]int{"Adam": 25, "Munaroh": 15}
-	fmt.Println(map1)
-	var age, isThereSisil = map1["Sisil"]
-	if isThereSisil {
-		fmt.Printf("Umur sisil adalah %v \n", age)
-	} else {
-		fmt.Println("Tidak ada Sisil")
-	}
-	for name := range map1 {
-		fmt.Printf("Nama: %v \n", name)
-	}
+	tesArraySliceMap()
 }
 
 func tesDataType() {
@@ -88,6 +55,47 @@ func tesFunction() {
 	default:
 		fmt.Println(var6)
 	}
+}
+
+func tesArraySliceMap() time.Duration {
+	t0 := time.Now()
+	fmt.Println(t0)
+	//array
+	var array1 [4]int = [4]int{1, 2, 3, 4}
+	array2 := [4]int{100, 90, 80, 70}
+	//if array1 tidak sama dengan null atau array2 tidak sama dengan null
+	if array1 != [4]int{} || array2 != [4]int{} {
+		fmt.Println("bisa")
+	}
+	i := array2
+	fmt.Printf("cobak %v \n", i)
+	for i := len(array2) - 1; i >= 0; i-- {
+		fmt.Printf("* %v * \n", array2[i])
+	}
+
+	//slice
+	var slice1 []int = []int{1, 2, 5}
+	var slice2 []int = []int{5, 6, 7, 8}
+	slice1 = append(slice1, slice2...)
+	var slice3 []int = make([]int, 3, 10)
+	fmt.Println(slice1)
+	fmt.Println(len(slice3), cap(slice3))
+	fmt.Println(slice1[len(slice1)-1]) //nilai terakhir
+
+	//map
+	var map1 = make(map[string]int)
+	map1 = map[string]int{"Adam": 25, "Munaroh": 15}
+	fmt.Println(map1)
+	var age, isThereSisil = map1["Sisil"]
+	if isThereSisil {
+		fmt.Printf("Umur sisil adalah %v \n", age)
+	} else {
+		fmt.Println("Tidak ada Sisil")
+	}
+	for name := range map1 {
+		fmt.Printf("Nama: %v \n", name)
+	}
+	return time.Since(t0)
 }
 func meng(pembilang int, pembagi int) (int, int, error) {
 	var err error
