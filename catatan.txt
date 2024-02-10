@@ -1,0 +1,300 @@
+Introduction to linux 
+
+* linux bersifat open source -> user memiliki akses langsung ke kode sumbernya
+* linux banyak distribusi, cont. ubuntu, mint, kali
+
+---
+* gui (graphical user interface) -> visual based, interaksi visual
+* cli (command line interface) -> text-based, interaksi baris perintah. efisien untuk administratif dan pengelolaan sistem
+* windows server basisnya cli
+
+---
+* shell -> merujuk ke cli. text-based. terminal di linux namanya shell. middleware/penengah dari user ke kernel sistem operasi
+
+jenis jenis shell :
+* bash -> shell default
+* zsh/z shell -> shell dengan fitur lanjutan
+* fish/friendly interactive shell -> shell yang lebih mudah digunakan dan sintaks intuitif
+* dash -> shell yang lebih ringan dan cepat, kadang jadi shell default pada limited source sistem
+
+----
+* environment variable -> menetapkan environment variable spt PATH, PS1 (prompt). digunakan untuk instalasi spt instalasi java
+* alias -> membuat alias pendek untuk perintah yang sering digunakan (cont ls -A bisa disingkat jadi la)
+* fungsi shell -> fungsi khusus yang dapat dipanggil di dalam shell
+
+Sebagai contoh, dalam Bash (Bourne Again SHell), shell yang umum digunakan di sistem Linux, 
+terdapat banyak perintah bawaan atau fungsi khusus yang dapat dipanggil. Contohnya:
+
+cd: Untuk berpindah direktori.
+ls: Untuk menampilkan isi dari direktori.
+echo: Untuk menampilkan teks ke layar.
+cp, mv, rm: Untuk menyalin, memindahkan, atau menghapus file.
+grep: Untuk mencari pola dalam teks.
+chmod: Untuk mengubah izin akses file atau direktori.
+export: Untuk menetapkan nilai ke variabel lingkungan.
+
+* pengaturan prompt -> mengatur tampilan prompt shell
+
+Pengaturan prompt ini memberikan fleksibilitas kepada pengguna untuk menyesuaikan tampilan 
+prompt sesuai dengan preferensi atau kebutuhan mereka. 
+Pengguna dapat menentukan elemen-elemen mana yang harus ditampilkan, 
+serta cara format dan tata letaknya.
+
+Contoh prompt standar di shell seperti Bash mungkin terlihat seperti ini:
+username@hostname:~/current/directory$
+
+username: Nama pengguna saat ini.
+hostname: Nama host sistem.
+~/current/directory: Path direktori kerja saat ini.
+$: Simbol prompt akhir.
+
+Pengguna dapat mengonfigurasi prompt sesuai dengan keinginan mereka. 
+Misalnya, untuk mengubah prompt di Bash, pengguna dapat mengedit variabel lingkungan PS1. 
+Berikut adalah contoh cara mengatur prompt di Bash:
+
+export PS1="[\u@\h \w]\$ "
+
+
+---
+* konfigurasi shell, menggunakan .bashrc dan .profile
+* .bashrc ->  file konfigurasi untuk shell yang akan dieksekusi ketika user membuka shell baru (buka terminal)
+* .profile -> file konfigurasi untuk shell yang akan dieksekusi ketika user login yang lokasinya sama di home/<namauser>
+                memanggil fungsi-fungsi tiap user login (konfigurasi shell)
+
+---
+* cd path -> buka path 
+* cd .. -> tutup path 
+* pwd -> cek kita di path mana sekarang 
+* mkdir -> membuat direktori baru (folder)
+* mkdir "path dengan spasi" -> membuat direktori baru tapi nama direktori tersebut mengandung spasi antar kata 
+* cp -> menyalin file (cont penggunaan -> cp file.png path)
+* cp -r pathA pathB -> salin isi pathA ke pathB
+* mv -> memindah file
+* rmdir atau rm -r -> hapus direktori
+* mkdir contoh\ path/ -> membuat direktori baru tapi nama direktori tersebut mengandung spasi antar kata
+* tar -> extract zip 
+* ls -l -> liat semua folder/file dan hak aksesnya
+    urutan hak akses -> user group other
+* grep -> mencari dan mengekstraksi pola teks dari satu atau beberapa file
+* touch <namafile.formatfile> -> membuat file baru
+
+---
+install chrome di linux
+* https://www.wikihow.com/Install-Google-Chrome-Using-Terminal-on-Linux
+
+---
+install vscode di linux
+* sudo dpkg -i code_1.86.1-1707298119_amd64.deb
+
+---
+install vim di linux
+* sudo apt-get install vim
+
+---
+Install mariadb mysql
+* sudo apt install mariadb-server
+* sudo mysql_secure_installation
+* start MariaDB Service
+  after installation, the MariaDB service should start automatically.
+  however, you can ensure that it's running by executing -> sudo systemctl start mariadb
+* launch the MariaDB command-line client -> sudo mariadb
+* open a database -> USE <mydatabase>;
+* check the selected database -> SELECT DATABASE();
+* keluar mariadb -> exit
+
+---
+cara install golang
+* masuk ke superuser -> su root 
+* jika user sekarang bukan superuser, jadikan superuser dulu -> usermod -aG sudo naura (replace naura dengan username yang dituju)
+* keluar dari superuser -> exit
+* cek apakah username yang dituju sudah menjadi superuser -> groups naura (replace naura dengan username yang dituju)
+* download versi golang yang ingin diinstall
+* extract zip golang ke folder yang dituju (dalam hal ini adalah /usr/local/) -> tar -C /usr/local -xzf go1.22.0.linux-amd64.tar.gz
+* buka code .profile shell -> code $HOME/.profile
+* tambahkan codeblock ini di baris paling akhir -> export PATH=$PATH:/usr/local/go/bin
+* to apply the changes immediately, execute them from the profile using a command  -> source $HOME/.profile
+* cek versi go yang terinstall -> go version
+* cek dimana environment variable path go terinstall -> go env
+* buka vscode dan terminalnya, install gopls -> go install http://golang.org/x/tools/gopls@latest
+* uninstall Go -> apt remove golang-go atau rm -rf /usr/local/go
+* hapus file yang tidak perlu -> apt autoremove
+
+---
+cara inisialisasi project go
+* inisialisasi awal -> go mod init Refactory (ganti Refactory dengan folder project go)
+* build dan run project go -> go run main.go (ganti main.go dengan file go yang mau di run) / go run .
+
+---
+manajemen hak akses 
+* ada dua cara: simbolik dan numerik
+    ls -l -> liat semua folder/file dan hak aksesnya
+    urutan hak akses -> user group other
+* simbolik -> chmod <user><aksi><akses> <nama-file/folder>
+    user -> u=user, g=group, o=other, a=all
+    aksi -> +,-,=
+    akses -> r=read, w=write, x=execute
+* numerik -> chmod <n1><n2><n3>
+    value angkanya: 
+    0 = no permission		1 = execute		2 = write
+    3 = write & execute		4 = read		5 = read & execute
+    6 = read & write		7 = all permission
+
+    n1 -> user
+    n2 -> group
+    n3 -> other
+* ubah hak milik file/folder -> sudo chown newusername filename
+				  sudo chown newusername:newgroup filename
+				  sudo chown -R newusername:newgroup directory
+				  sudo chown -hR newusername:newgroup directory (semua file dan subfolder ganti kepemilikan)
+
+---
+* cara buat group -> sudo groupadd refactory (ubah refactory dengan nama group)
+* cara cek apakah group sudah ada -> grep "refactory " /etc/group (ubah refactory dengan nama group)
+* cara tambah anggota ke group -> sudo usermod -aG refactory naura (ubah refactory dengan nama group, ubah naura dengan username)
+
+---
+git
+* install git di linux, ketik di terminal -> sudo apt-get install git
+* inisialisasi awal git -> git init
+* working tree adalah direktori yang sudah diinisialisasi sehingga terlacak oleh git, di dalam direktori ada repositori (hidden folder .git)
+* satu commit = satu versi
+* konfigurasi nama untuk git -> git config <parameter> user.name "naura" (ubah <parameter> dengan --global, --system, atau tanpa parameter)
+* konfigurasi email untuk git -> git config <parameter> user.email "defriskanaura@gmail.com" (ubah <parameter> dengan --global, --system, atau tanpa parameter)
+* parameter system berlaku untuk seluruh repo&seluruh user
+* parameter global hanya berlaku untuk user tertentu dan seluruh repo milik user tersebut
+* tanpa parameter hanya berlaku untuk repo aktif
+* cek kondisi/status working tree -> git status
+* cek config yang sudah dilakukan -> sudo git config --parameter --list
+* status untracked (warna merah) "untracked files" -> file berada pada working tree tapi belum masuk di dalam record git (belum di "git add ." ke record git)
+* status staged (warna hijau) -> perubahan pada untracked/modified file sudah masuk staging area (sudah di "git add .") 
+* status committed -> perubahan di staged area sudah di commit dan masuk ke dalam history commit (sudah di "git commit")
+* status modified (warna merah) "changes not staged for commit" -> file yang ada di dalam record git mengalami perubahan, dan perubahan itu belum ada di record git
+
+---
+konfigurasi Git Credential Manager dengan GPG
+* buat gen-key pair -> gpg --gen-key
+* cari lokasi instalasi gpg -> which gpg / whereis gpg
+* set konfigurasi git credential manager environment variable -> git config --global credential.helper pathgpg
+* mengecek semua konfigurasi global git -> git config --global -l
+* update package manager -> sudo apt update
+* bila tidak ada gpg, maka install terlebih dahulu -> sudo apt install gnupg
+* configure Git to use GCM as the credential helper -> git config --global credential.helper manager
+* generate a Personal Access Token (PAT) on GitHub
+
+---
+cara pasang ssh ke github
+* buat dulu keygen nya -> ssh-keygen -t rsa -b 4096 -C "defriskanaura@gmail.com"
+* eval "$(ssh-agent -s)"
+* ssh-add ~/.ssh/id_rsa
+* copy ssh ke clipboard -> cat ~/.ssh/id_rsa.pub
+* buka Settings > SSH and GPG keys di GitHub. klik "New SSH Key" dan tempelkan kunci SSH yang telah disalin.
+* tes koneksi ssh ke github -> ssh -T git@github.com
+
+---
+* inisiasi git di repo lokal -> git init
+* add git ke repo lokal -> git add .
+* commit git ke repo lokal -> git commit -m "comment"
+* hubungkan git remote add origin https://github.com/OWNER/REPOSITORY.git
+* ganti nama main branch -> git branch -M main
+
+---
+
+ubah hak milik file/folder -> sudo chown 
+ls -> panggil semua folder
+user@nama komputer: patch
+
+.profile memanggil fungsi-fungsi tiap user login (konfigurasi shell)
+touch
+
+klik su root
+baru up ke sudoers
+
+staged area hijau
+unstaged area merah
+
+code ssh
+git branch -r (cek fetch darimana)
+
+---
+start a working area (see also: git help tutorial)
+   clone     Clone a repository into a new directory
+   init      Create an empty Git repository or reinitialize an existing one
+
+work on the current change (see also: git help everyday)
+   add       Add file contents to the index
+   mv        Move or rename a file, a directory, or a symlink
+   restore   Restore working tree files
+   rm        Remove files from the working tree and from the index
+
+examine the history and state (see also: git help revisions)
+   bisect    Use binary search to find the commit that introduced a bug
+   diff      Show changes between commits, commit and working tree, etc
+   grep      Print lines matching a pattern
+   log       Show commit logs
+   show      Show various types of objects
+   status    Show the working tree status
+
+grow, mark and tweak your common history
+   branch    List, create, or delete branches
+   commit    Record changes to the repository
+   merge     Join two or more development histories together
+   rebase    Reapply commits on top of another base tip
+   reset     Reset current HEAD to the specified state
+   switch    Switch branches
+   tag       Create, list, delete or verify a tag object signed with GPG
+
+collaborate (see also: git help workflows)
+   fetch     Download objects and refs from another repository
+   pull      Fetch from and integrate with another repository or a local branch
+   push      Update remote refs along with associated objects
+
+---
+install react.js
+https://learnubuntu.com/install-reactjs/
+
+---
+install vite
+https://installati.one/install-vite-ubuntu-20-04
+buka --> npm vite init
+
+---
+---
+Yang dipelajari hari ini adalah pengenalan tools, driver database, query yang digunakan di refactory. Database sendiri adalah kumpulan data yang disimpan secara sistematis di dalam komputer. Untuk driver database yang diajarkan adalah mysql. Lalu di kelas diajarkan pula query atau bahasa sql nya, diantaranya adalah :
+1. DDL (Data Definition Language) -> fungsinya untuk membuat, menambah dan menghapus struktur pada database. perintahnya diantara lain : membuat table (create), mengubah isi table (alter), mengubah nama (rename), dan menghapus table (drop). lalu dijelaskan juga tipe datanya (numerik, string, date and time)
+2. DML (Data Manipulation Language) -> fungsinya untuk manipulasi data dan pengolahan isi data di dalam tabel. perintahnya diantara lain : menampilkan data yang dipilih (select), memberi alias dan mengganti nama tabel atau kolom yang bersifat sementara (column/alias), menghilangkan semua record duplikat (distinct), menentukan kondisi tertentu dalam mengambil data (where). lalu dijelaskan juga comparison dan logic operatornya.
+
+Kemudian di sini juga diajarkan postman untuk menguji API. Postman memungkinkan untuk melakukan berbagai jenis permintaan HTTP seperti GET (ambil data), POST (kirim data), PUT (memperbarui keseluruhan data), PATCH (memperbarui sebagian data), DELETE (menghapus data), dan lainnya terhadap endpoint API. Untuk praktek postman nya menggunakan dummy data di reqres.in
+
+---
+
+Pada kelas hari ini, materi yang diajarkan adalah code editor. Code editor sendiri adalah tools yang digunakan untuk menulis coding dari suatu program. Code editor yang sering digunakan di Refactory -> Vim, Visual Studio Code, Android Studio.
+
+1. Vim -> text-based, open source, berbasis cli, tidak memiliki ui. buka file pada vim dapat melalui cara : vim <file>. 
+2. intellisense : suggestion yang menampilkan method apa saja yang dimiliki suatu objek. debugging : mengidentifikasi, menemukan, dan memperbaiki kesalahan atau bug dalam sebuah program. snippets : template buat mengulang pattern code.
+3. Android Studio -> code editor untuk pengembangan aplikasi android. android virtual device : untuk pengujian aplikasi android. ekstensi & plugin : penunjang fungsionalitas android studio yang memudahkan user untuk menulis program.
+
+naura@Naura:~$ ssh-keygen -t rsa -b 4096 -C "defriskanaura@gmail.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/naura/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/naura/.ssh/id_rsa
+Your public key has been saved in /home/naura/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:ii3faZ+avu25ZBHK/wx4JMsfnYYpLnEPakCFMLOnoZE defriskanaura@gmail.com
+The key's randomart image is:
++---[RSA 4096]----+
+|  +. .           |
+| . +. .          |
+|E o ..    .      |
+| o +.  . . .     |
+|. ..    S o      |
+|    .o.oo* = .   |
+|    o.o+=oX +    |
+|     o+o.X.O     |
+|     ..+O=O.o    |
++----[SHA256]-----+
+naura@Naura:~$ eval "$(ssh-agent -s)"
+Agent pid 5159
+naura@Naura:~$ ssh-add ~/.ssh/id_rsa
+Identity added: /home/naura/.ssh/id_rsa (defriskanaura@gmail.com)
