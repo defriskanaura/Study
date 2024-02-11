@@ -91,6 +91,15 @@ install vim di linux
 * sudo apt-get install vim
 
 ---
+install react.js
+https://learnubuntu.com/install-reactjs/
+
+---
+install vite
+https://installati.one/install-vite-ubuntu-20-04
+buka --> npm vite init
+
+---
 Install mariadb mysql
 * sudo apt install mariadb-server
 * sudo mysql_secure_installation
@@ -339,14 +348,7 @@ collaborate (see also: git help workflows)
    pull      Fetch from and integrate with another repository or a local branch
    push      Update remote refs along with associated objects
 
----
-install react.js
-https://learnubuntu.com/install-reactjs/
 
----
-install vite
-https://installati.one/install-vite-ubuntu-20-04
-buka --> npm vite init
 
 ---
 ---
