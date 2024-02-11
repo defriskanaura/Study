@@ -154,24 +154,6 @@ manajemen hak akses
 * cara tambah anggota ke group -> sudo usermod -aG refactory naura (ubah refactory dengan nama group, ubah naura dengan username)
 
 ---
-git
-* install git di linux, ketik di terminal -> sudo apt-get install git
-* inisialisasi awal git -> git init
-* working tree adalah direktori yang sudah diinisialisasi sehingga terlacak oleh git, di dalam direktori ada repositori (hidden folder .git)
-* satu commit = satu versi
-* konfigurasi nama untuk git -> git config <parameter> user.name "naura" (ubah <parameter> dengan --global, --system, atau tanpa parameter)
-* konfigurasi email untuk git -> git config <parameter> user.email "defriskanaura@gmail.com" (ubah <parameter> dengan --global, --system, atau tanpa parameter)
-* parameter system berlaku untuk seluruh repo&seluruh user
-* parameter global hanya berlaku untuk user tertentu dan seluruh repo milik user tersebut
-* tanpa parameter hanya berlaku untuk repo aktif
-* cek kondisi/status working tree -> git status
-* cek config yang sudah dilakukan -> sudo git config --parameter --list
-* status untracked (warna merah) "untracked files" -> file berada pada working tree tapi belum masuk di dalam record git (belum di "git add ." ke record git)
-* status staged (warna hijau) -> perubahan pada untracked/modified file sudah masuk staging area (sudah di "git add .") 
-* status committed -> perubahan di staged area sudah di commit dan masuk ke dalam history commit (sudah di "git commit")
-* status modified (warna merah) "changes not staged for commit" -> file yang ada di dalam record git mengalami perubahan, dan perubahan itu belum ada di record git
-
----
 konfigurasi Git Credential Manager dengan GPG
 * buat gen-key pair -> gpg --gen-key
 * cari lokasi instalasi gpg -> which gpg / whereis gpg
@@ -192,12 +174,34 @@ cara pasang ssh ke github
 * tes koneksi ssh ke github -> ssh -T git@github.com
 
 ---
+git
+* install git di linux, ketik di terminal -> sudo apt-get install git
+* inisialisasi awal git -> git init
+* working tree adalah direktori yang sudah diinisialisasi sehingga terlacak oleh git, di dalam direktori ada repositori (hidden folder .git)
+* satu commit = satu versi
+* konfigurasi nama untuk git -> git config <parameter> user.name "naura" (ubah <parameter> dengan --global, --system, atau tanpa parameter)
+* konfigurasi email untuk git -> git config <parameter> user.email "defriskanaura@gmail.com" (ubah <parameter> dengan --global, --system, atau tanpa parameter)
+* parameter system berlaku untuk seluruh repo&seluruh user
+* parameter global hanya berlaku untuk user tertentu dan seluruh repo milik user tersebut
+* tanpa parameter hanya berlaku untuk repo aktif
+* cek kondisi/status working tree -> git status
+* cek config yang sudah dilakukan -> sudo git config --parameter --list
+* status untracked (warna merah) "untracked files" -> file berada pada working tree tapi belum masuk di dalam record git (belum di "git add ." ke record git)
+* status staged (warna hijau) -> perubahan pada untracked/modified file sudah masuk staging area (sudah di "git add .") 
+* status committed -> perubahan di staged area sudah di commit dan masuk ke dalam history commit (sudah di "git commit")
+* status modified (warna merah) "changes not staged for commit" -> file yang ada di dalam record git mengalami perubahan, dan perubahan itu belum ada di record git
+
+---
 * inisiasi git di repo lokal -> git init
 * add git ke repo lokal -> git add .
 * commit git ke repo lokal -> git commit -m "comment"
 * hubungkan git remote add origin https://github.com/OWNER/REPOSITORY.git
 * ganti nama main branch -> git branch -M main
 
+---
+git reset
+* hard reset memindahkan ke perubahan yang dituju, menghapus history commit di log, menghapus perubahan pada file, status commited -> git reset --hard HEAD~1
+* soft reset memindahkan ke perubahan yang dituju, menghapus history commit di log, tidak menghapus perubahan pada file, status staged 
 ---
 
 ubah hak milik file/folder -> sudo chown 
