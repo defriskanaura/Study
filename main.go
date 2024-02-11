@@ -4,12 +4,54 @@ import (
 	"errors"
 	"fmt"
 	"strings"
+	"sync"
 	"time"
 	"unicode/utf8"
 )
 
-func main() {
+var wg = sync.WaitGroup{}
+var mu = sync.RWMutex{}
+var dbString []string
 
+func main() {
+	tesString()
+}
+
+func tesExecuteGoRoutine() {
+	t0 := time.Now()
+	wg.Add(3)
+	go tesGoRoutine1()
+	go tesGoRoutine2()
+	go tesGoRoutine3()
+	wg.Wait()
+	fmt.Printf("Waktu selesai %v", time.Since(t0))
+}
+func tesGoRoutine1() {
+	mu.Lock()
+	for i := 0; i < 100; i++ {
+		dbString = append(dbString, "a")
+	}
+	mu.Unlock()
+	wg.Done()
+}
+
+func tesGoRoutine2() {
+	mu.RLock()
+	fmt.Print(dbString)
+	// for i := 0; i < 300; i++ {
+	// 	fmt.Print("b")
+	// }
+	mu.RUnlock()
+	wg.Done()
+}
+
+func tesGoRoutine3() {
+	mu.Lock()
+	for i := 0; i < 100; i++ {
+		dbString = append(dbString, "b")
+	}
+	mu.Unlock()
+	wg.Done()
 }
 
 func tesStruct() {
@@ -92,7 +134,6 @@ there`
 }
 
 func tesString() {
-
 	fmt.Println("without stringbuilder")
 	var stringSlices = []string{"c", "o", "b", "a"}
 	var stringSliced = ""
@@ -109,16 +150,29 @@ func tesString() {
 	}
 	var strBuilt = strBuild.String()
 	fmt.Println(strBuilt)
-	var string1 = "untuk kamu"
+	var string1 = "untukkamu"
 	strBuild.Reset()
 	strBuild.WriteString(string1)
-	strBuilt2 := strings.Split(strBuild.String(), " ")
+	strBuilt2 := strings.Split(strBuild.String(), "u")
 	strBuild.Reset()
 	for i := range strBuilt2 {
 		strBuild.WriteString(strBuilt2[i])
 	}
-	strBuilt3 := strBuild.String()
-	fmt.Printf("%v", strBuilt3)
+	strBuilt3 := strings.Split(strBuild.String(), "n")
+	strBuild.Reset()
+	for i := range strBuilt3 {
+		strBuild.WriteString(strBuilt3[i])
+	}
+	strBuilt4 := strBuild.String()
+	fmt.Printf("%v \n \n", strings.ToUpper(strBuilt4))
+
+	str := "hello world"
+	if len(str) >= 2 {
+		modified := strings.ToLower(string(str[0])) + str[2:5] + strings.ToUpper(string(str[0]))
+		fmt.Println(modified) // Output: hELLO world
+	} else {
+		fmt.Println(str) // Output: hello world (unchanged if the length is less than 2)
+	}
 }
 
 func tesArraySliceMap() time.Duration {
