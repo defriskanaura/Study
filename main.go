@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	tesArraySliceMap()
+	fmt.Println("Test")
 }
 
 func tesDataType() {
@@ -97,6 +97,7 @@ func tesArraySliceMap() time.Duration {
 	}
 	return time.Since(t0)
 }
+
 func meng(pembilang int, pembagi int) (int, int, error) {
 	var err error
 	if pembagi == 0 {

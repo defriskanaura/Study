@@ -115,7 +115,8 @@ cara install golang
 * to apply the changes immediately, execute them from the profile using a command  -> source $HOME/.profile
 * cek versi go yang terinstall -> go version
 * cek dimana environment variable path go terinstall -> go env
-* buka vscode dan terminalnya, install gopls -> go install http://golang.org/x/tools/gopls@latest
+* buka vscode dan terminalnya, install gopls -> go install golang.org/x/tools/gopls@latest
+* solusi build cache is required, but could not be located: GOCACHE is not an absolute path -> export GOCACHE=$HOME/.cache/go-build
 * uninstall Go -> apt remove golang-go atau rm -rf /usr/local/go
 * hapus file yang tidak perlu -> apt autoremove
 
