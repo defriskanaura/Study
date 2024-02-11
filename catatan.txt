@@ -251,6 +251,7 @@ Aborting
   dan mengaplikasikan perubahan di commit sebelumn yang dipilih pada commit terbaru -> git revert <hash-commit>
 * menghasilkan sejarah commit yang bersih dan linear, cocok untuk menjaga riwayat commit tetap rapi dan mudah dimengerti -> git rebase
 * mnggunakan rebase untuk menerapkan perubahan dari satu cabang ke cabang lain -> git rebase <namabranch1> <namabranch2> 
+* menggunakan rebase interaktif untuk menyusun ulang, mengedit, atau menggabungkan commit dalam sejarah commit -> git rebase -i HEAD~n
 
 ---
 usage: git checkout [<options>] <branch>
