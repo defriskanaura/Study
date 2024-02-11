@@ -244,6 +244,14 @@ Aborting
 * untuk restore perubahan terbaru yang disimpan dan disembunyikan di stash -> git stash apply stash@{0}
 * untuk restore perubahan ke-n yang disimpan dan disembunyikan di stash (sistem n kayak array) -> git stash apply stash@{n}
 * untuk menghapus perubahan ke-n pada stash -> git stash drop stash@{n}
+* menampilkan 3 log terbaru -> git log -n 3 
+
+---
+* kembali ke perubahan commit yang dipilih, membatalkan perubahan pada commit yang dipilih 
+  dan mengaplikasikan perubahan di commit sebelumn yang dipilih pada commit terbaru -> git revert <hash-commit>
+* menghasilkan sejarah commit yang bersih dan linear, cocok untuk menjaga riwayat commit tetap rapi dan mudah dimengerti -> git rebase
+* mnggunakan rebase untuk menerapkan perubahan dari satu cabang ke cabang lain -> git rebase <namabranch1> <namabranch2> 
+
 ---
 usage: git checkout [<options>] <branch>
    or: git checkout [<options>] [<branch>] -- <file>...
