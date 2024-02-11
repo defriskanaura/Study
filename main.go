@@ -9,6 +9,32 @@ import (
 )
 
 func main() {
+	var mawar kosEkslusif = kosEkslusif{800, true, penyewaKos{"naura"}}
+	mawar.biaya = 1000
+	var melati kosMurahTanpaKTP = kosMurahTanpaKTP{isian: false, biaya: 200}
+	var lily kosMurah = kosMurah{200, false, penyewaKos{"Dea"}}
+	fmt.Println(mawar.biaya, melati.biaya, mawar.nama, lily.penyewa.nama)
+}
+
+type kosEkslusif struct {
+	biaya int
+	isian bool
+	penyewaKos
+}
+
+type kosMurah struct {
+	biaya   int
+	isian   bool
+	penyewa penyewaKos
+} 
+
+type kosMurahTanpaKTP struct {
+	biaya   int
+	isian   bool
+}
+
+type penyewaKos struct {
+	nama string
 }
 
 func tesDataType() {
