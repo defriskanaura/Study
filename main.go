@@ -9,11 +9,35 @@ import (
 )
 
 func main() {
+
+}
+
+func tesStruct() {
 	var mawar kosEkslusif = kosEkslusif{800, true, penyewaKos{"naura"}}
 	mawar.biaya = 1000
 	var melati kosMurahTanpaKTP = kosMurahTanpaKTP{isian: false, biaya: 200}
 	var lily kosMurah = kosMurah{200, false, penyewaKos{"Dea"}}
-	fmt.Println(mawar.biaya, melati.biaya, mawar.nama, lily.penyewa.nama)
+	var kosMelati = struct {
+		biaya   int
+		isian   bool
+		penyewa penyewaKos
+	}{200, false, penyewaKos{"amia"}}
+	fmt.Println(mawar.biaya, melati.biaya, mawar.nama, lily.penyewa.nama, kosMelati.penyewa.nama)
+	fmt.Println(mawar.biayaBulanan(6))
+	fmt.Println(cekBudget(lily, 2, 400))
+}
+
+func cekBudget(k kos, month int, budget int) bool {
+	if budget < k.biayaBulanan(month) {
+		return false
+	} else {
+		return true
+	}
+
+}
+
+type kos interface {
+	biayaBulanan(month int) int
 }
 
 type kosEkslusif struct {
@@ -22,15 +46,27 @@ type kosEkslusif struct {
 	penyewaKos
 }
 
+func (k kosEkslusif) biayaBulanan(month int) int {
+	return k.biaya * month
+}
+
 type kosMurah struct {
 	biaya   int
 	isian   bool
 	penyewa penyewaKos
-} 
+}
+
+func (k kosMurah) biayaBulanan(month int) int {
+	return k.biaya * month
+}
 
 type kosMurahTanpaKTP struct {
-	biaya   int
-	isian   bool
+	biaya int
+	isian bool
+}
+
+func (k kosMurahTanpaKTP) biayaBulanan(month int) int {
+	return k.biaya * month
 }
 
 type penyewaKos struct {
