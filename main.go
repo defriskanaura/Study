@@ -3,12 +3,12 @@ package main
 import (
 	"errors"
 	"fmt"
+	"strings"
 	"time"
 	"unicode/utf8"
 )
 
 func main() {
-	fmt.Println("Test")
 }
 
 func tesDataType() {
@@ -29,32 +29,34 @@ there`
 	fmt.Println(utf8.RuneCountInString(string2))
 }
 
-func tesFunction() {
-	var var5, var6, err = meng(10, 2)
+func tesString() {
 
-	if err != nil {
-		fmt.Println(err.Error())
-	} else {
-		fmt.Printf("Hasilnya adalah %v dan %v", var5, var6)
+	fmt.Println("without stringbuilder")
+	var stringSlices = []string{"c", "o", "b", "a"}
+	var stringSliced = ""
+	for i := len(stringSlices) - 1; i >= 0; i-- {
+		fmt.Println(stringSlices[i])
+		stringSliced += stringSlices[i]
+		fmt.Println(stringSliced)
 	}
-
-	switch {
-	case err != nil:
-		fmt.Println(err.Error())
-	case var6 == 0:
-		fmt.Println("okegas")
-	default:
-		fmt.Printf("The results are %v and %v", var5, var6)
+	fmt.Println("")
+	fmt.Println("stringbuilder")
+	var strBuild strings.Builder
+	for i := range stringSlices {
+		strBuild.WriteString(stringSlices[i])
 	}
-
-	switch var6 {
-	case 10:
-		fmt.Println("10a")
-	case 11:
-		fmt.Println("11a")
-	default:
-		fmt.Println(var6)
+	var strBuilt = strBuild.String()
+	fmt.Println(strBuilt)
+	var string1 = "untuk kamu"
+	strBuild.Reset()
+	strBuild.WriteString(string1)
+	strBuilt2 := strings.Split(strBuild.String(), " ")
+	strBuild.Reset()
+	for i := range strBuilt2 {
+		strBuild.WriteString(strBuilt2[i])
 	}
+	strBuilt3 := strBuild.String()
+	fmt.Printf("%v", strBuilt3)
 }
 
 func tesArraySliceMap() time.Duration {
@@ -96,6 +98,34 @@ func tesArraySliceMap() time.Duration {
 		fmt.Printf("Nama: %v \n", name)
 	}
 	return time.Since(t0)
+}
+
+func tesFunction() {
+	var var5, var6, err = meng(10, 2)
+
+	if err != nil {
+		fmt.Println(err.Error())
+	} else {
+		fmt.Printf("Hasilnya adalah %v dan %v", var5, var6)
+	}
+
+	switch {
+	case err != nil:
+		fmt.Println(err.Error())
+	case var6 == 0:
+		fmt.Println("okegas")
+	default:
+		fmt.Printf("The results are %v and %v", var5, var6)
+	}
+
+	switch var6 {
+	case 10:
+		fmt.Println("10a")
+	case 11:
+		fmt.Println("11a")
+	default:
+		fmt.Println(var6)
+	}
 }
 
 func meng(pembilang int, pembagi int) (int, int, error) {
