@@ -200,8 +200,80 @@ git
 
 ---
 git reset
-* hard reset memindahkan ke perubahan yang dituju, menghapus history commit di log, menghapus perubahan pada file, status commited -> git reset --hard HEAD~1
-* soft reset memindahkan ke perubahan yang dituju, menghapus history commit di log, tidak menghapus perubahan pada file, status staged 
+* hard reset : memindahkan ke perubahan yang dituju, menghapus history commit di log, menghapus perubahan pada file, status commited -> git reset --hard HEAD~1
+* soft reset : memindahkan ke perubahan yang dituju, menghapus history commit di log, tidak menghapus perubahan pada file, status staged -> git reset --soft HEAD~1
+* mixed reset : memindahkan ke perubahan yang dituju, menghapus history commit di log, tidak menghapus perubahan pada file, status untracked/modified -> git reset HEAD~1
+* reset file : memindahkan file tertentu dari status staged ke status untracked/modified
+---
+git checkout
+* membatalkan status untracked/modified pada file tertentu dan mengembalikan file ke keadaan file pada status staged/committed -> git checkout -- <namafile>
+
+* git status di branch Master -> committed
+* git log di branch Master :
+commit cfd1a4243d6304e6718faf19dba63500d38df84d (HEAD -> master)
+Author: defriskanaura <defriskanaura@gmail.com>
+Date:   Sun Feb 11 19:24:34 2024 +0700
+
+    delete testuawaga from coba2.txt
+
+commit 41c53c437362603d574cc8653d3b476e18b369ca (develop)
+Author: defriskanaura <defriskanaura@gmail.com>
+Date:   Sun Feb 11 19:19:59 2024 +0700
+
+    changes on coba1/webkangslamet
+
+* kemudian buka branch develop
+* git log di branch Develop :
+commit 41c53c437362603d574cc8653d3b476e18b369ca (HEAD -> develop)
+Author: defriskanaura <defriskanaura@gmail.com>
+Date:   Sun Feb 11 19:19:59 2024 +0700
+
+    changes on coba1/webkangslamet
+
+* dapat terlihat branch develop ketinggalan satu commit daripada branch master
+* lakukan perubahan di coba1.txt dan lakukan git add .
+* ketika akan checkout ke master, maka akan muncul :
+error: Your local changes to the following files would be overwritten by checkout:
+        coba1.txt
+Please commit your changes or stash them before you switch branches.
+Aborting
+
+
+---
+usage: git checkout [<options>] <branch>
+   or: git checkout [<options>] [<branch>] -- <file>...
+
+    -b <branch>           create and checkout a new branch
+    -B <branch>           create/reset and checkout a branch
+    -l                    create reflog for new branch
+    --[no-]guess          second guess 'git checkout <no-such-branch>' (default)
+    --[no-]overlay        use overlay mode (default)
+    -q, --[no-]quiet      suppress progress reporting
+    --[no-]recurse-submodules[=<checkout>]
+                          control recursive updating of submodules
+    --[no-]progress       force progress reporting
+    -m, --[no-]merge      perform a 3-way merge with the new branch
+    --[no-]conflict <style>
+                          conflict style (merge, diff3, or zdiff3)
+    -d, --[no-]detach     detach HEAD at named commit
+    -t, --[no-]track[=(direct|inherit)]
+                          set branch tracking configuration
+    -f, --[no-]force      force checkout (throw away local modifications)
+    --[no-]orphan <new-branch>
+                          new unparented branch
+    --[no-]overwrite-ignore
+                          update ignored files (default)
+    --[no-]ignore-other-worktrees
+                          do not check if another worktree is holding the given ref
+    -2, --ours            checkout our version for unmerged files
+    -3, --theirs          checkout their version for unmerged files
+    -p, --[no-]patch      select hunks interactively
+    --[no-]ignore-skip-worktree-bits
+                          do not limit pathspecs to sparse entries only
+    --[no-]pathspec-from-file <file>
+                          read pathspec from file
+    --[no-]pathspec-file-nul
+                          with --pathspec-from-file, pathspec elements are separated with NUL character
 ---
 
 ubah hak milik file/folder -> sudo chown 
