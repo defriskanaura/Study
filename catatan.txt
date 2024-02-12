@@ -107,8 +107,6 @@ Install mariadb mysql
   after installation, the MariaDB service should start automatically.
   however, you can ensure that it's running by executing -> sudo systemctl start mariadb
 * launch the MariaDB command-line client -> sudo mariadb
-* open a database -> USE <mydatabase>;
-* check the selected database -> SELECT DATABASE();
 * keluar mariadb -> exit
 
 ---
@@ -262,6 +260,29 @@ Aborting
 * mnggunakan rebase untuk menerapkan perubahan dari satu cabang ke cabang lain -> git rebase <namabranch1> <namabranch2> 
 * menggunakan rebase interaktif untuk menyusun ulang, mengedit, atau menggabungkan commit dalam sejarah commit -> git rebase -i HEAD~n
 
+---
+query mysql
+* tampilkan database apa saja yang ada pada mariadb -> SHOW DATABASES;
+* open a database -> USE <mydatabase>;
+* check the selected database -> SELECT DATABASE();
+* hapus database -> DROP DATABASE IF EXISTS <namadatabase>;
+* menampilkan tabel dari database tertentu -> DESCRIBE <namatable>; / SHOW COLUMNS FROM <namatable>;
+* tambahkan tabel dan kolom -> CREATE TABLE <namatabel>(<namacolumn> <tipedata> <keterangan lain seperti notnull>, kolom lagi, ..., PRIMARY KEY (<namacolumn>),
+  FOREIGN KEY (<namacolumn>) REFERENCES <namatabel>(<namacolumn>));
+* tambahkan kolom dari tabel yang sudah ada -> ALTER TABLE <namatabel> ADD <namacolumn> <tipedata> <keterangan lain seperti notnull>;
+* ubah kolom dari tabel yang sudah ada -> ALTER TABLE <namatabel> MODIFY <namacolumn> <tipedata> <keterangan lain seperti notnull>;
+* hapus kolom dari tabel yang sudah ada -> ALTER TABLE <namatabel> DROP COLUMN <namacolumn>;
+* ganti nama tabel -> ALTER TABLE <namatabel> RENAME TO <namatabelbaru>;
+* ganti nama column -> ALTER TABLE <namatabel> RENAME COLUMN <namacolumn> TO <namacolumnbaru>;
+* sisipkan data pada tabel tertentu -> INSERT INTO <namatabel> (<namacolumn1>,<namacolumn2>) VALUES (<datacolumn1>,<datacolumn2>);
+* tampilkan data dari tabel -> SELECT * FROM <namatabel>;
+* tampilkan data dengan spesifik tertentu dari tabel
+  -> SELECT * FROM <namatabel> WHERE <pengkondisian>;
+  pengkondisian : * LIKE 'S%'
+                  * IN ("Jogja","Surabaya")
+                  * BETWEEN <data1> AND <data2>
+                  * AND, OR, NOT
+                  
 ---
 usage: git checkout [<options>] <branch>
    or: git checkout [<options>] [<branch>] -- <file>...
