@@ -14,7 +14,15 @@ var mu = sync.RWMutex{}
 var dbString []string
 
 func main() {
-	tesString()
+perulangan:
+	for i := 0; i < 99; i++ {
+		for j := 0; j < 3; j++ {
+			fmt.Print("matriks [", i, "][", j, "]", "\n")
+			if i == 2 {
+				break perulangan
+			}
+		}
+	}
 }
 
 func tesExecuteGoRoutine() {
