@@ -97,7 +97,7 @@ https://learnubuntu.com/install-reactjs/
 ---
 install vite
 https://installati.one/install-vite-ubuntu-20-04
-buka --> npm vite init
+buka project baru --> npm create vite@latest 
 
 ---
 Install mariadb mysql
